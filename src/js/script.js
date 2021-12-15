@@ -77,9 +77,31 @@
         }
       }
       console.log(thisBook.filters);
+      filterBooks();
     });
    
   }
+
+  function filterBooks(){
+    const thisBook = this;
+
+    for(let book of dataSource.books){
+      let shouldBeHidden = false;
+      
+      for(const filter of thisBook.filters){
+        if(!book.details[filter]){
+          shouldBeHidden = true;
+          break;
+        }
+      }
+      if(shouldBeHidden){
+        document.querySelector(`.book__image[data-id="${book.id}"]`).classList.add('hidden');
+      }else{
+        document.querySelector(`.book__image[data-id="${book.id}"]`).classList.remove('hidden');
+      }
+    }
+  }
+
   render();
   initActions();
 }
