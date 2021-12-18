@@ -28,6 +28,7 @@
       const thisBook = this;
       thisBook.render();
       thisBook.initActions();
+      thisBook.getElements();
       thisBook.filters = [];
       thisBook.favouriteBooks = [];
     }
@@ -36,20 +37,14 @@
       this.data = dataSource.books;
     }
 
-    // getElements(){
-    //   const thisBook = this;
+    getElements() {
+      const thisBook = this;
+      thisBook.dom = {};
 
-    // thisBook.templates = {
-    //   bookTemplate: Handlebars.compile(
-    //     document.querySelector(select.templateOf.bookTemplate).innerHTML
-    //   ),
-    // };
-    // thisBook.favouriteBooks = [];
-
-    // thisBook.booksList = document.querySelector(select.containerOf.booksList);
-    // thisBook.bookWrapper = document.querySelector(select.containerOf.booksList);
-    // thisBook.form = document.querySelector(select.containerOf.filters);
-    // }
+      // thisBook.dom.booksList = document.querySelector(select.containerOf.booksList);
+      thisBook.dom.bookWrapper = document.querySelector(select.containerOf.booksList);
+      thisBook.dom.form = document.querySelector(select.containerOf.filters);
+    }
 
     render() {
       const thisBook = this;
@@ -66,23 +61,21 @@
         /*create element using utilis.createElementFromHTML */
         thisBook.element = utils.createDOMFromHTML(thisBook.generatedHTML);
         /*find bookList container*/
-        thisBook.booksList = document.querySelector(
-          select.containerOf.booksList
-        );
+        // thisBook.booksList = document.querySelector(
+        //   select.containerOf.booksList
+        // );
         /*add element to menu */
-        thisBook.booksList.appendChild(thisBook.element);
+        thisBook.dom.bookWrapper.appendChild(thisBook.element);
       }
     }
+
 
     initActions() {
       const thisBook = this;
       // thisBook.favouriteBooks = [];
       // const booksImg = document.querySelectorAll(select.booksImages.images);
 
-      thisBook.bookWrapper = document.querySelector(
-        select.containerOf.booksList
-      );
-      thisBook.bookWrapper.addEventListener('dblclick', function (event) {
+      thisBook.dom.bookWrapper.addEventListener('dblclick', function (event) {
         event.preventDefault();
         console.log(event.target.offsetParent);
         event.target.offsetParent.classList.toggle('favorite');
@@ -99,10 +92,10 @@
       });
 
       // thisBook.filters = [];
-      thisBook.form = document.querySelector(select.containerOf.filters);
+      // thisBook.form = document.querySelector(select.containerOf.filters);
       // console.log(form);
 
-      thisBook.form.addEventListener('click', function (event) {
+      thisBook.dom.form.addEventListener('click', function (event) {
         const clickedElement = event.target;
 
         if (
