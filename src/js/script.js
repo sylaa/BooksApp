@@ -26,9 +26,9 @@
   class BooksList {
     constructor() {
       const thisBook = this;
-      thisBook.render();
-      thisBook.initActions();
       thisBook.getElements();
+      thisBook.initActions();
+      thisBook.render();
       thisBook.filters = [];
       thisBook.favouriteBooks = [];
     }
