@@ -108,7 +108,7 @@
             thisBook.filters.push(clickedElement.value);
           } else {
             const unchecked = thisBook.filters.indexOf(clickedElement.value);
-            thisBook.filters.splice(unchecked,);
+            thisBook.filters.splice(unchecked, 1);
           }
         }
         console.log(thisBook.filters);
